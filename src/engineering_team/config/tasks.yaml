@@ -1,0 +1,28 @@
+design_task:
+  description: >
+    Produce a high-level, multi-module system plan as VALID JSON ONLY (no markdown, no prose)
+    matching this exact schema:
+    {
+      "system_name": "str",
+      "modules": [
+        {
+          "module_name": "str (must end with .py)",
+          "classes": [{"class_name": "str", "summary": "str"}],
+          "notes": "str"
+        }
+      ]
+    }
+
+    Requirements: {requirements}
+
+    Rules:
+    - MUST return JSON only (no ``` fences, no text outside JSON).
+    - MUST include at least 1 module.
+    - Every module_name MUST end with ".py".
+    - Every module MUST contain at least 1 class.
+    - Keep names import-safe (letters, numbers, underscores).
+
+  expected_output: >
+    Valid JSON ONLY matching the schema above.
+  agent: engineering_lead
+  output_file: output/design_plan.json
