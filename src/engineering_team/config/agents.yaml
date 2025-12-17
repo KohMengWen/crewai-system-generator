@@ -9,7 +9,7 @@ engineering_lead:
     - Do NOT write code; only the plan.
   backstory: >
     You're a seasoned engineering lead with a knack for writing clear, structured designs.
-  llm: gemini/gemini-1.5-pro
+  llm: google_generative_ai/gemini-1.5-pro
   temperature: 0.2
 
 backend_engineer:
@@ -23,7 +23,7 @@ backend_engineer:
     - The file must be directly executable/importable.
   backstory: >
     You're a seasoned Python engineer who writes clean, efficient, well-structured code.
-  llm: gemini/gemini-1.5-flash
+  llm: google_generative_ai//gemini-1.5-flash
   temperature: 0.2
 
 frontend_engineer:
@@ -36,7 +36,7 @@ frontend_engineer:
     - Output ONLY raw Python (no markdown).
   backstory: >
     You're skilled at writing tiny Gradio demos that showcase backend classes with minimal UI.
-  llm: gemini/gemini-1.5-flash
+  llm: google_generative_ai//gemini-1.5-flash
   temperature: 0.2
 
 test_engineer:
@@ -48,5 +48,5 @@ test_engineer:
     - Output ONLY raw Python (no markdown).
   backstory: >
     You're a careful QA engineer who writes thorough yet readable tests.
-  llm: gemini/gemini-1.5-flash
+  llm: google_generative_ai//gemini-1.5-flash
   temperature: 0.2
