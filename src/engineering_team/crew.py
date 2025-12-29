@@ -1,5 +1,6 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
+from langchain_openai import ChatOpenAI
 from pydantic import BaseModel
 from typing import List, Optional
 import os
@@ -17,6 +18,11 @@ class DesignPlan(BaseModel):
     system_name: str
     modules: List[ModuleSpec]
 
+deepseek_llm = ChatOpenAI(
+    model='deepseek-chat',
+    temperature=0.2
+)
+
 def validate_plan_guardrail(output):
     plan = output.model_dump() if hasattr(output, "model_dump") else output
     modules = plan.get("modules", [])
@@ -33,12 +39,12 @@ class EngineeringTeam:
 
     @agent
     def engineering_lead(self) -> Agent:
-        return Agent(config=self.agents_config['engineering_lead'], verbose=True)
+        return Agent(config=self.agents_config['engineering_lead'],llm=deepseek_llm, verbose=True)
 
     @agent
     def backend_engineer(self) -> Agent:
         return Agent(
-            config=self.agents_config['backend_engineer'],
+            config=self.agents_config['backend_engineer'],llm=deepseek_llm,
             verbose=True,
             allow_code_execution=True,
             code_execution_mode="safe",
@@ -48,12 +54,12 @@ class EngineeringTeam:
 
     @agent
     def frontend_engineer(self) -> Agent:
-        return Agent(config=self.agents_config['frontend_engineer'], verbose=True)
+        return Agent(config=self.agents_config['frontend_engineer'],llm=deepseek_llm, verbose=True)
 
     @agent
     def test_engineer(self) -> Agent:
         return Agent(
-            config=self.agents_config['test_engineer'],
+            config=self.agents_config['test_engineer'],llm=deepseek_llm,
             verbose=True,
             allow_code_execution=True,
             code_execution_mode="safe",
